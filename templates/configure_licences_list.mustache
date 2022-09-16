@@ -1,0 +1,18 @@
+<table class="table">
+    {{#licences}}
+        <tr class="my-1">
+            <td>
+                <img src="{{{ licenceimage }}}" height="30">
+            </td>
+            <td>
+                {{ licencename }}
+            </td>
+            <td>
+                <a href="{{{ licenceurl }}}" target="_blank">{{ licenceurl }}</a>
+            </td>
+            <td>
+                <a href="{{{ deleteurl }}}&itemid={{id}}" alt="{{#str}} delete {{/str}}">{{#str}} delete {{/str}}</a>
+            </td>
+        </tr>
+    {{/licences}}
+</table>

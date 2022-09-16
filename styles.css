@@ -1,0 +1,23 @@
+.block_informations .content img{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.block_informations .content .licence-infos {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.block_informations .content .licence-infos a {
+    display: flex;
+    align-self: flex-start;
+}
+
+.block_informations .content .licence-infos img {
+    max-height: 40px;
+    width: auto;
+}
