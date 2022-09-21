@@ -1,4 +1,5 @@
 <form id="cartridge-registration-form" class="form-horizontal">
+    {{! CC licence name }}
     <div class="control-group">
         <div class ="control-label">
             <label for="registration-secret">{{#str}} cc_licence_name, block_informations {{/str}}</label>
@@ -13,6 +14,7 @@
                 id="cc-licence-name">
         </div>
     </div>
+    {{! CC licence URL }}
     <div class="control-group">
         <div class="control-label">
             <label for="registration-key">{{#str}} cc_licence_url, block_informations {{/str}}</label>
@@ -27,6 +29,7 @@
                 id="cc-licence-url">
         </div>
     </div>
+    {{! CC image URL }}
     <div class="control-group">
         <div class ="control-label">
             <label for="registration-secret">{{#str}} cc_image_url, block_informations {{/str}}</label>
@@ -41,6 +44,20 @@
                 id="cc-image-url">
         </div>
     </div>
+    {{! Categories }}
+    <div class="control-group">
+        <div class="control-label">
+            <label for="registration-key">{{#str}} available_categories, block_informations {{/str}}</label>
+        </div>
+        <div class="controls">
+            <select class="input-block-level form-control" name="categoryid">
+            {{#categories}}
+                <option value="{{{ id }}}">[{{{ id }}}] {{ name }}</option>
+            {{/categories}}
+            </select>
+        </div>
+    </div>
+    {{! Submit }}
     <div class="control-group mt-3">
         <div class="controls">
             <button id="cartridge-registration-submit" type="submit" class="btn btn-success">

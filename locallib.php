@@ -39,12 +39,17 @@ function block_informations_add_licence($licence) {
     throw new moodle_exception('errorinsertingrecord', 'block_informations');
 }
 
-function block_informations_get_licences() {
+function block_informations_get_all_licences() {
     global $DB;
 
     $licences = $DB->get_records('block_informations_licences');
     $items = [];
     foreach ($licences as $licence) {
+        $licence->categoryname = NULL;
+        if ($licence->categoryid > 0) {
+            $category = \core_course_category::get($licence->categoryid);
+            $licence->categoryname = $category->name;
+        }
         array_push($items, (array) $licence);
     }
     return $items;
@@ -78,4 +83,39 @@ function block_informations_get_licence($id) {
 
     $licence = $DB->get_record('block_informations_licences', array('id' => $id));
     return $licence;
+}
+
+function block_informations_get_available_categories() {
+    global $DB;
+
+    $categories = core_course_category::get_all(['returnhidden' => true]);
+    $categories = array_map(function($obj) { return $obj->id;}, $categories);
+
+    $usedcategoriesids = $DB->get_records_sql('SELECT DISTINCT(categoryid) as id FROM {block_informations_licences} WHERE categoryid IS NOT NULL');
+    $usedcategoriesids = array_map(function($obj) { return $obj->id;}, $usedcategoriesids);
+
+    $availablecategoriesids = array_diff($categories, $usedcategoriesids);
+    $availablecategories = \core_course_category::get_many($availablecategoriesids);
+
+    return $availablecategories;
+}
+
+function block_informations_category_licence($categoryid) {
+    global $DB;
+
+    $licence = $DB->get_record_sql('SELECT * FROM {block_informations_licences} WHERE categoryid = :categoryid', array('categoryid' => $categoryid));
+    return $licence;
+}
+
+function block_informations_get_course_category($coursecontext) {
+    global $DB;
+
+    $categoryid = null;
+    $courseid = $coursecontext->instanceid;
+    $course = $DB->get_record('course', array('id' => $courseid), 'id, category');
+    if ($course) {
+        $categoryid = $course->category;
+    }
+
+    return $categoryid;
 }

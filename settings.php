@@ -43,9 +43,18 @@ if ($ADMIN->fulltree) {
     
     $settings->add(new admin_setting_configselect(
         'block_informations/default_licence',
-        new lang_string('default_licence', 'block_informations'),
-        new lang_string('default_licence_desc', 'block_informations'),
+        new lang_string('settings:default_licence', 'block_informations'),
+        new lang_string('settings:default_licence_desc', 'block_informations'),
         null,
         block_informations_get_licences_names())
+    );
+
+    $settings->add(new admin_setting_configstoredfile(
+        'block_informations/default_image',
+        new lang_string('settings:default_image', 'block_informations'),
+        new lang_string('settings:default_image_desc', 'block_informations'),
+        'default_image',
+        0,
+        ['accepted_types' => ['image']])
     );
 }

@@ -30,21 +30,26 @@ require_once("$CFG->dirroot/blocks/informations/locallib.php");
 require_login(0, false);
 admin_externalpage_setup('manageblocks');
 
-$configurenameparam    = optional_param('cc-licence-name', '', PARAM_TEXT);
-$configurelicenceparam = optional_param('cc-licence-url', '', PARAM_URL);
-$configureimageparam   = optional_param('cc-image-url', '', PARAM_URL);
+$configurenameparam     = optional_param('cc-licence-name', '', PARAM_TEXT);
+$configurelicenceparam  = optional_param('cc-licence-url', '', PARAM_URL);
+$configureimageparam    = optional_param('cc-image-url', '', PARAM_URL);
+$configurecategoryparam = optional_param('categoryid', NULL, PARAM_INTEGER);
 
 if ($configurelicenceparam && $configureimageparam) {
     $licence = new stdClass();
     $licence->licencename = $configurenameparam;
     $licence->licenceurl = $configurelicenceparam;
     $licence->licenceimage = $configureimageparam;
+    $licence->categoryid = $configurecategoryparam;
     block_informations_add_licence($licence);
 }
 
+$systemcontext = context_system::instance();
 $pageurl = new moodle_url('/blocks/informations/configure.php');
 $PAGE->set_url($pageurl);
 $PAGE->set_title("{$SITE->shortname}: " . get_string('configuration', 'block_informations'));
+$PAGE->set_context($systemcontext);
+$PAGE->navbar->add(get_string('pluginname', 'block_informations'));
 $output = $PAGE->get_renderer('block_informations');
 
 

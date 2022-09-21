@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Informations block install script
+ * Informations block uninstall script
  *
  * @package    block_informations
  * @copyright  2022 Fondation UNIT
@@ -23,9 +23,9 @@
  */
 
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
 
-function xmldb_block_informations_install() {
-    global $DB;
+function xmldb_block_informations_uninstall() {
+    return true;
 }
