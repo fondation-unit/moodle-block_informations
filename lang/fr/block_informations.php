@@ -23,10 +23,10 @@
  */
 
 $string['pluginname'] = 'Informations';
-$string['title'] = 'Partageons L\'Université Numérique et des Cursus HYbrides';
+$string['title'] = 'Informations';
 $string['blocktitle'] = 'Modifier le titre :';
 $string['blockstring'] = 'Modifier le contenu :';
-$string['defaulttitle'] = 'Partageons L\'Université Numérique et des Cursus HYbrides';
+$string['defaulttitle'] = 'Informations';
 $string['defaulttext'] = '<p>Un projet de L\'Université Numérique alliée à un consortium de partenaires :<p>
 <ul>
     <li>Pour répondre à une forte demande de supports de formations hybrides facilement réutilisables</li>
