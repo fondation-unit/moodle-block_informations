@@ -46,6 +46,6 @@ if ($ADMIN->fulltree) {
         new lang_string('default_licence', 'block_informations'),
         new lang_string('default_licence_desc', 'block_informations'),
         null,
-        get_licences_names())
+        block_informations_get_licences_names())
     );
 }

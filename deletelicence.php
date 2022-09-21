@@ -40,5 +40,5 @@ if ($returnto == 'configure') {
 }
 
 if ($itemid) {
-    delete_licence($itemid, $returnurl);
+    block_informations_delete_licence($itemid, $returnurl);
 }

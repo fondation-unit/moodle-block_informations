@@ -39,7 +39,7 @@ if ($configurelicenceparam && $configureimageparam) {
     $licence->licencename = $configurenameparam;
     $licence->licenceurl = $configurelicenceparam;
     $licence->licenceimage = $configureimageparam;
-    add_licence($licence);
+    block_informations_add_licence($licence);
 }
 
 $pageurl = new moodle_url('/blocks/informations/configure.php');

@@ -55,7 +55,7 @@ class block_informations extends block_base
             $text = $this->config->text['text'];
         }
 
-        if (!$licence = get_licence($licenceid)) {
+        if (!$licence = block_informations_get_licence($licenceid)) {
             $licence = new \stdClass();
             $licence->licencename = null;
             $licence->licenceurl = null;

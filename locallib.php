@@ -24,7 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-function add_licence($licence) {
+
+function block_informations_add_licence($licence) {
     global $DB;
 
     if ($licence->licencename && $licence->licenceurl && $licence->licenceimage) {
@@ -38,7 +39,7 @@ function add_licence($licence) {
     throw new moodle_exception('errorinsertingrecord', 'block_informations');
 }
 
-function get_licences() {
+function block_informations_get_licences() {
     global $DB;
 
     $licences = $DB->get_records('block_informations_licences');
@@ -49,7 +50,7 @@ function get_licences() {
     return $items;
 }
 
-function delete_licence($itemid, $redirecto) {
+function block_informations_delete_licence($itemid, $redirecto) {
     global $DB;
 
     $params = ['id' => $itemid];
@@ -60,7 +61,7 @@ function delete_licence($itemid, $redirecto) {
     throw new moodle_exception('errordeletingrecord', 'block_informations');
 }
 
-function get_licences_names() {
+function block_informations_get_licences_names() {
     global $DB;
 
     $licences = $DB->get_records('block_informations_licences');
@@ -72,7 +73,7 @@ function get_licences_names() {
 }
 
 
-function get_licence($id) {
+function block_informations_get_licence($id) {
     global $DB;
 
     $licence = $DB->get_record('block_informations_licences', array('id' => $id));
