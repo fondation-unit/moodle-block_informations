@@ -99,3 +99,23 @@ function block_informations_get_available_categories() {
 
     return $availablecategories;
 }
+
+function block_informations_category_licence($categoryid) {
+    global $DB;
+
+    $licence = $DB->get_record_sql('SELECT * FROM {block_informations_licences} WHERE categoryid = :categoryid', array('categoryid' => $categoryid));
+    return $licence;
+}
+
+function block_informations_get_course_category($coursecontext) {
+    global $DB;
+
+    $categoryid = null;
+    $courseid = $coursecontext->instanceid;
+    $course = $DB->get_record('course', array('id' => $courseid), 'id, category');
+    if ($course) {
+        $categoryid = $course->category;
+    }
+
+    return $categoryid;
+}

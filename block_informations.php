@@ -45,6 +45,8 @@ class block_informations extends block_base
     }
 
     public function get_content() {
+        global $PAGE;
+
         $this->content = new stdClass();
         $image = $this->config && isset($this->config->image) ? $this->config->image : 'default';
         $defaultlicence = get_config('block_informations', 'default_licence');
@@ -55,13 +57,21 @@ class block_informations extends block_base
             $text = $this->config->text['text'];
         }
 
-        if (!$licence = block_informations_get_licence($licenceid)) {
-            $licence = new \stdClass();
-            $licence->licencename = null;
-            $licence->licenceurl = null;
-            $licence->licenceimage = null;
-        }
+        $licence = new \stdClass();
+        $licence->licencename = null;
+        $licence->licenceurl = null;
+        $licence->licenceimage = null;
 
+        $context = $PAGE->context;
+        $coursecontext = $context->get_course_context();
+        $coursecategory = block_informations_get_course_category($coursecontext);
+        $licence = block_informations_category_licence($coursecategory);
+
+        if (!$licence) {
+            // No category licence
+            $licence = block_informations_get_licence($licenceid);
+        }
+        
         $content = new \block_informations\output\content(
             $text,
             $image,
