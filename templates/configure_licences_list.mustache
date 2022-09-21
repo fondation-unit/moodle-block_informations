@@ -11,6 +11,12 @@
                 <a href="{{{ licenceurl }}}" target="_blank">{{ licenceurl }}</a>
             </td>
             <td>
+                {{#categoryid}}
+                    <a href="{{wwwroot}}/course/index.php?categoryid={{categoryid}}" target="_blank">{{ categoryname }}</a>
+                {{/categoryid}}
+                {{^categoryid}}-{{/categoryid}}
+            </td>
+            <td>
                 <a href="{{{ deleteurl }}}&itemid={{id}}" alt="{{#str}} delete {{/str}}">{{#str}} delete {{/str}}</a>
             </td>
         </tr>

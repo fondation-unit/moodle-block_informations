@@ -49,7 +49,7 @@ class block_informations_edit_form extends block_edit_form {
         $mform->setDefault('config_image', 'unit-informations');
 
         // Licences.
-        $licences = block_informations_get_licences_names();
+        $licences = block_informations_get_all_licences_names();
         $mform->addElement('select', 'config_licence', get_string('licences', 'block_informations'), $licences);
         $mform->setDefault('config_licence', '');
 

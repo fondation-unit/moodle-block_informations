@@ -41,6 +41,7 @@ $string['cc_licence_url'] = 'CC licence URL';
 $string['cc_licence_url_desc'] = 'Ajoute une nouvelle URL de licence Creative Commons (ex : https://creativecommons.org/licenses/by-nc-sa/4.0/).';
 $string['cc_image_url'] = 'CC licence image URL';
 $string['cc_image_url_desc'] = 'Ajoute une nouvelle URL vers une image de licence Creative Commons (ex : https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png).';
+$string['available_categories'] = 'Categories disponibles';
 $string['licence_category'] = 'Licence pour la catégorie';
 $string['licence_category_desc'] = 'Associe la licence à une catégorie de cours.';
 $string['licence_category_empty'] = 'Vide - Ne pas associer à une catégorie.';
