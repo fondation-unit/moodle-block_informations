@@ -43,6 +43,7 @@ $string['cc_image_url'] = 'CC licence image URL';
 $string['cc_image_url_desc'] = 'Add a new Creative Commons licence URL (ex : https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png).';
 $string['licence_category'] = 'License for the category';
 $string['licence_category_desc'] = 'Binds the license to a category of courses.';
+$string['licence_category_empty'] = 'Empty - Do not bind to a category';
 $string['configuration'] = 'Configuration';
 $string['configuration_settings'] = 'Configuration settings';
 $string['default_licence'] = 'Default licence';

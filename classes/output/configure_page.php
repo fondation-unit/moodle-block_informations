@@ -60,7 +60,9 @@ class configure_page implements renderable, templatable {
         $data->namehelp = $namehelp;
         $data->licencehelp = $licencehelp;
         $data->imagehelp = $imagehelp;
-        $data->categories = [];
+        $data->categories = [
+            ['id' => 0, 'name' => get_string('licence_category_empty', 'block_informations')]
+        ];
 
         $categories = core_course_category::get_all(['returnhidden' => true]);
         foreach($categories as $category) {
