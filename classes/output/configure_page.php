@@ -48,7 +48,7 @@ class configure_page implements renderable, templatable {
         $licencehelp = new help_icon('cc_licence_url_desc', 'block_informations');
         $imagehelp = new help_icon('cc_image_url_desc', 'block_informations');
 
-        $licences = block_informations_nces();
+        $licences = block_informations_get_licences();
 
         $data = new stdClass();
         $data->licences = $licences;
