@@ -45,13 +45,25 @@ class block_informations extends block_base
     }
 
     public function get_content() {
-        global $PAGE;
+        global $PAGE, $OUTPUT;
 
         $this->content = new stdClass();
-        $image = $this->config && isset($this->config->image) ? $this->config->image : 'default';
         $defaultlicence = get_config('block_informations', 'default_licence');
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
         $text = get_string('defaulttext', 'block_informations');
+        $defaultimage = get_config('block_informations', 'default_image');
+
+        if (isset($defaultimage)) {
+            $image = moodle_url::make_pluginfile_url(
+                context_system::instance()->id,
+                'block_informations',
+                'default_image',
+                null,
+                null,
+                $defaultimage);
+        } else {
+            $image = null;
+        }
 
         if (!empty($this->config->text['text'])) {
             $text = $this->config->text['text'];
