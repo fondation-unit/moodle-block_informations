@@ -34,6 +34,7 @@ use templatable;
 use renderer_base;
 use stdClass;
 use help_icon;
+use core_course_category;
 
 
 class configure_page implements renderable, templatable {
@@ -59,6 +60,15 @@ class configure_page implements renderable, templatable {
         $data->namehelp = $namehelp;
         $data->licencehelp = $licencehelp;
         $data->imagehelp = $imagehelp;
+        $data->categories = [];
+
+        $categories = core_course_category::get_all(['returnhidden' => true]);
+        foreach($categories as $category) {
+            $data->categories[] = [
+                'id' => $category->id,
+                'name' => $category->name
+            ];
+        }
 
         return $data;
     }
