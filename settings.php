@@ -71,4 +71,14 @@ if ($ADMIN->fulltree) {
         '',
         PARAM_TEXT)
     );
+
+    $settings->add(new admin_setting_configtextarea(
+        'block_informations/body',
+        new lang_string('settings:body', 'block_informations'),
+        new lang_string('settings:body_desc', 'block_informations'),
+        '',
+        PARAM_RAW,
+        '50',
+        '10')
+    );
 }

@@ -48,11 +48,7 @@ class block_informations extends block_base
         $this->content = new stdClass();
         $defaultlicence = get_config('block_informations', 'default_licence');
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
-        $text = get_string('defaulttext', 'block_informations');
-
-        if (!empty($this->config->text['text'])) {
-            $text = $this->config->text['text'];
-        }
+        $body = get_config('block_informations', 'body');
 
         // Try to get any remote image ; if not, get the stored one.
         $image = get_config('block_informations', 'image_url');
@@ -87,7 +83,7 @@ class block_informations extends block_base
             // No category licence.
             if (!$licence = block_informations_get_licence($licenceid)) {
                 // Render the block without a licence.
-                $content = new \block_informations\output\content($text, $image, null, null, null);
+                $content = new \block_informations\output\content($body, $image, null, null, null);
                 $this->content->text = $renderer->render($content);
                 return $this->content;
             }
@@ -95,7 +91,7 @@ class block_informations extends block_base
 
         // Prepare the content for the renderer.
         $content = new \block_informations\output\content(
-            $text,
+            $body,
             $image,
             $licence->licencename,
             $licence->licenceurl,
@@ -108,11 +104,11 @@ class block_informations extends block_base
 
     public function specialization() {
         $defaulttitle = get_string('defaulttitle', 'block_informations');
-        $defaulttext = get_string('defaulttext', 'block_informations');
+        $defaultbody = get_string('settings:body', 'block_informations');
 
         if (isset($this->config)) {
             $this->title = empty($this->config->title) ? $defaulttitle : $this->config->title;
-            $this->text = empty($this->config->text) ? $defaulttext : $this->config->text;
+            $this->body = empty($this->config->body) ? '' : $this->config->body;
         }
     }
 

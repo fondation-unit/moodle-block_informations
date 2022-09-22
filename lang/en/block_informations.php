@@ -27,12 +27,6 @@ $string['title'] = 'Informations';
 $string['blocktitle'] = 'Change the title :';
 $string['blockstring'] = 'Change the content :';
 $string['defaulttitle'] = 'Informations';
-$string['defaulttext'] = '<p>A project of the Digital University allied to a consortium of partners:<p>
-<ul>
-    <li>To meet a strong demand for easily reusable hybrid training materials</li>
-    <li>To initiate a general, systemic and collective approach aimed at the creation and sharing of digital educational
-     resources with a large potential for reuse, revision and adaptation to various contexts</li>
-</ul>';
 $string['imagealt'] = 'Image alt';
 $string['image'] = 'Image of the block';
 $string['cc_licence_name'] = 'CC licence name';
@@ -55,6 +49,8 @@ $string['settings:image_url'] = 'Image URL';
 $string['settings:image_url_desc'] = 'The remote image URL to be displayed in the block.';
 $string['settings:image_alt'] = 'Alternative text of the image';
 $string['settings:image_alt_desc'] = 'Alternative text of the image displayed in the block.';
+$string['settings:body'] = 'Body text of block.';
+$string['settings:body_desc'] = 'Body text of block. Can be overriden within an instance of the block in editing mode.';
 $string['licences'] = 'Licences';
 $string['licence'] = 'Licence';
 $string['licenceofthecontent'] = 'Licence of the content';
