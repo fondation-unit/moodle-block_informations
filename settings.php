@@ -38,7 +38,7 @@ if ($ADMIN->fulltree) {
 
     $settings->add(new admin_setting_heading('block_informations', new lang_string('configuration_settings', 'block_informations') .
         null, $template));
-    
+
     $settings->add(new admin_setting_configselect(
         'block_informations/default_licence',
         new lang_string('settings:default_licence', 'block_informations'),
@@ -59,8 +59,8 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext(
         'block_informations/imagealt',
         new lang_string('settings:image_alt', 'block_informations'),
-        new lang_string('settings:image_alt_desc', 'block_informations'), 
-        '', 
+        new lang_string('settings:image_alt_desc', 'block_informations'),
+        '',
         PARAM_TEXT)
     );
 }
