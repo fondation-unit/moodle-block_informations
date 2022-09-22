@@ -55,7 +55,7 @@ function block_informations_get_all_licences() {
     $licences = $DB->get_records('block_informations_licences');
     $items = array();
     foreach ($licences as $licence) {
-        $licence->categoryname = NULL;
+        $licence->categoryname = null;
         if ($licence->categoryid > 0) {
             $category = \core_course_category::get($licence->categoryid);
             $licence->categoryname = $category->name;
