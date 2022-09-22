@@ -88,14 +88,17 @@ function block_informations_get_licence($id) {
 function block_informations_get_available_categories() {
     global $DB;
 
-    $categories = core_course_category::get_all(['returnhidden' => true]);
-    $categories = array_map(function($obj) { return $obj->id;}, $categories);
-
+    $categories = core_course_category::make_categories_list();
     $usedcategoriesids = $DB->get_records_sql('SELECT DISTINCT(categoryid) as id FROM {block_informations_licences} WHERE categoryid IS NOT NULL');
-    $usedcategoriesids = array_map(function($obj) { return $obj->id;}, $usedcategoriesids);
+    
+    foreach ($usedcategoriesids as $key => $val) {
+        unset($categories[$key]);
+    }
 
-    $availablecategoriesids = array_diff($categories, $usedcategoriesids);
-    $availablecategories = \core_course_category::get_many($availablecategoriesids);
+    $availablecategories = array();
+    foreach ($categories as $key => $val) {
+        $availablecategories[] = (object) array('id' => $key, 'name' => $val);
+    }
 
     return $availablecategories;
 }
