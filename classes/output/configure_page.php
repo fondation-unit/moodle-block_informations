@@ -48,7 +48,10 @@ class configure_page implements renderable, templatable {
         global $CFG;
 
         $licences = block_informations_get_all_licences();
-        $deleteurl = new moodle_url('/blocks/informations/deletelicence.php', array('sesskey' => sesskey(), 'returnto' => 'configure'));
+        $deleteurl = new moodle_url('/blocks/informations/deletelicence.php', array(
+            'sesskey' => sesskey(),
+            'returnto' => 'configure')
+        );
         $namehelp = new help_icon('cc_licence_name_desc', 'block_informations');
         $licencehelp = new help_icon('cc_licence_url_desc', 'block_informations');
         $imagehelp = new help_icon('cc_image_url_desc', 'block_informations');
@@ -63,11 +66,11 @@ class configure_page implements renderable, templatable {
         $data->imagehelp = $imagehelp;
         $data->categorieshelp = $categorieshelp;
         $data->categories = [
-            ['id' => NULL, 'name' => get_string('licence_category_empty', 'block_informations')]
+            ['id' => null, 'name' => get_string('licence_category_empty', 'block_informations')]
         ];
 
         $categories = block_informations_get_available_categories();
-        foreach($categories as $category) {
+        foreach ($categories as $category) {
             $data->categories[] = [
                 'id' => $category->id,
                 'name' => $category->name
