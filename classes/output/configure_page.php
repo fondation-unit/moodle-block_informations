@@ -38,6 +38,7 @@ use core_course_category;
 
 
 class configure_page implements renderable, templatable {
+
     /**
      * Export this data so it can be used as the context for a mustache template.
      *

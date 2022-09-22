@@ -33,7 +33,7 @@ admin_externalpage_setup('manageblocks');
 $configurenameparam     = optional_param('cc-licence-name', '', PARAM_TEXT);
 $configurelicenceparam  = optional_param('cc-licence-url', '', PARAM_URL);
 $configureimageparam    = optional_param('cc-image-url', '', PARAM_URL);
-$configurecategoryparam = optional_param('categoryid', NULL, PARAM_INTEGER);
+$configurecategoryparam = optional_param('categoryid', null, PARAM_INTEGER);
 
 if ($configurelicenceparam && $configureimageparam) {
     $licence = new stdClass();
