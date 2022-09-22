@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Informations block
+ * Informations block locallib
  *
  * @package    block_informations
  * @copyright  2022 Fondation UNIT
@@ -25,6 +25,12 @@
 defined('MOODLE_INTERNAL') || die;
 
 
+/**
+ * Create a new licence record.
+ *
+ * @param  object $licence
+ * @return resource|moodle_exception The block's configure URL
+ */
 function block_informations_add_licence($licence) {
     global $DB;
 
@@ -39,11 +45,16 @@ function block_informations_add_licence($licence) {
     throw new moodle_exception('errorinsertingrecord', 'block_informations');
 }
 
+/**
+ * Get all the configured licences.
+ *
+ * @return array of licences
+ */
 function block_informations_get_all_licences() {
     global $DB;
 
     $licences = $DB->get_records('block_informations_licences');
-    $items = [];
+    $items = array();
     foreach ($licences as $licence) {
         $licence->categoryname = NULL;
         if ($licence->categoryid > 0) {
@@ -55,7 +66,13 @@ function block_informations_get_all_licences() {
     return $items;
 }
 
-function block_informations_delete_licence($itemid, $redirecto) {
+/**
+ * Delete a licence.
+ *
+ * @param  int $itemid
+ * @return resource|moodle_exception The block's configure URL
+ */
+function block_informations_delete_licence($itemid) {
     global $DB;
 
     $params = ['id' => $itemid];
@@ -66,6 +83,11 @@ function block_informations_delete_licence($itemid, $redirecto) {
     throw new moodle_exception('errordeletingrecord', 'block_informations');
 }
 
+/**
+ * Get the names of the available licences.
+ *
+ * @return array of licences names
+ */
 function block_informations_get_licences_names() {
     global $DB;
 
@@ -77,7 +99,12 @@ function block_informations_get_licences_names() {
     return $items;
 }
 
-
+/**
+ * Get the licence infos.
+ *
+ * @param  integer $id
+ * @return object of block_informations_licences
+ */
 function block_informations_get_licence($id) {
     global $DB;
 
@@ -85,6 +112,11 @@ function block_informations_get_licence($id) {
     return $licence;
 }
 
+/**
+ * Get a list of the categories that aren't associated with a licence.
+ *
+ * @return array of categories id and name
+ */
 function block_informations_get_available_categories() {
     global $DB;
 
@@ -107,7 +139,7 @@ function block_informations_get_available_categories() {
  * Retrieve a licence for the given category id.
  *
  * @param  int $categoryid
- * @return object|null $licence A record of block_informations_licences or null.
+ * @return object|null $licence A record of block_informations_licences or null
  */
 function block_informations_category_licence($categoryid) {
     global $DB;
@@ -126,6 +158,12 @@ function block_informations_category_licence($categoryid) {
     return $licence;
 }
 
+/**
+ * Get the course category id.
+ *
+ * @param context $coursecontext
+ * @return int $categoryid
+ */
 function block_informations_get_course_category($coursecontext) {
     global $DB;
 
