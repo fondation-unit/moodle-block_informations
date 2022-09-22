@@ -47,7 +47,7 @@ if ($configurelicenceparam && $configureimageparam) {
 $systemcontext = context_system::instance();
 $pageurl = new moodle_url('/blocks/informations/configure.php');
 $PAGE->set_url($pageurl);
-$PAGE->set_title("{$SITE->shortname}: " . get_string('configuration', 'block_informations'));
+$PAGE->set_title("{$SITE->shortname}: " . get_string('licences_configuration', 'block_informations'));
 $PAGE->set_context($systemcontext);
 $PAGE->navbar->add(get_string('pluginname', 'block_informations'));
 $output = $PAGE->get_renderer('block_informations');

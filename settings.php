@@ -28,13 +28,11 @@ require_once("$CFG->dirroot/blocks/informations/locallib.php");
 
 if ($ADMIN->fulltree) {
     $configureurl = "{$CFG->wwwroot}/blocks/informations/configure.php?action=add&amp;sesskey={$USER->sesskey}";
-    $configurestr = get_string('configuration', 'block_informations');
+    $configurestr = get_string('licences_configuration', 'block_informations');
 
     $template = <<< EOD
     <div class="yui-content mb-5">
-        <div>
-            <div><a style="margin-top:.25em" href="{$configureurl}">{$configurestr}</a></div>
-        </div>
+        <a href="{$configureurl}">{$configurestr}</a>
     </div>
     EOD;
 
