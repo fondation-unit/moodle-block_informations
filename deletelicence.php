@@ -33,12 +33,7 @@ admin_externalpage_setup('manageblocks');
 
 $itemid = required_param('itemid', PARAM_INT);
 $returnto = optional_param('returnto', '', PARAM_ALPHA);
-$returnurl = $CFG->wwwroot;
-
-if ($returnto == 'configure') {
-    $returnurl = new moodle_url($CFG->wwwroot . '/blocks/informations/configure.php');
-}
 
 if ($itemid) {
-    block_informations_delete_licence($itemid, $returnurl);
+    block_informations_delete_licence($itemid);
 }

@@ -28,19 +28,17 @@ require_once("$CFG->dirroot/blocks/informations/locallib.php");
 
 if ($ADMIN->fulltree) {
     $configureurl = "{$CFG->wwwroot}/blocks/informations/configure.php?action=add&amp;sesskey={$USER->sesskey}";
-    $configurestr = get_string('configuration', 'block_informations');
+    $configurestr = get_string('licences_configuration', 'block_informations');
 
     $template = <<< EOD
     <div class="yui-content mb-5">
-        <div>
-            <div><a style="margin-top:.25em" href="{$configureurl}">{$configurestr}</a></div>
-        </div>
+        <a href="{$configureurl}">{$configurestr}</a>
     </div>
     EOD;
 
     $settings->add(new admin_setting_heading('block_informations', new lang_string('configuration_settings', 'block_informations') .
         null, $template));
-    
+
     $settings->add(new admin_setting_configselect(
         'block_informations/default_licence',
         new lang_string('settings:default_licence', 'block_informations'),
@@ -50,11 +48,34 @@ if ($ADMIN->fulltree) {
     );
 
     $settings->add(new admin_setting_configstoredfile(
-        'block_informations/default_image',
-        new lang_string('settings:default_image', 'block_informations'),
-        new lang_string('settings:default_image_desc', 'block_informations'),
-        'default_image',
+        'block_informations/image',
+        new lang_string('settings:image', 'block_informations'),
+        new lang_string('settings:image_desc', 'block_informations'),
+        'image',
         0,
         ['accepted_types' => ['image']])
+    );
+
+    $settings->add(new admin_setting_configtext(
+        'block_informations/image_url',
+        new lang_string('settings:image_url', 'block_informations'),
+        new lang_string('settings:image_url_desc', 'block_informations'),
+        '',
+        PARAM_URL)
+    );
+
+    $settings->add(new admin_setting_configtext(
+        'block_informations/imagealt',
+        new lang_string('settings:image_alt', 'block_informations'),
+        new lang_string('settings:image_alt_desc', 'block_informations'),
+        '',
+        PARAM_TEXT)
+    );
+
+    $settings->add(new admin_setting_confightmleditor(
+        'block_informations/body',
+        new lang_string('settings:body', 'block_informations'),
+        new lang_string('settings:body_desc', 'block_informations'),
+        '')
     );
 }

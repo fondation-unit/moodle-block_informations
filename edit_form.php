@@ -27,7 +27,11 @@ defined('MOODLE_INTERNAL') || die;
 require_once("$CFG->dirroot/blocks/informations/locallib.php");
 
 class block_informations_edit_form extends block_edit_form {
-
+    /**
+     * Definition of the fields.
+     *
+     * @param MoodleQuickForm $mform
+     */
     protected function specific_definition($mform) {
         // Titre de l'en-tête de section selon le fichier de langue.
         $mform->addElement('header', 'config_header', get_string('blocksettings', 'block'));
@@ -41,21 +45,9 @@ class block_informations_edit_form extends block_edit_form {
         $mform->addElement('editor', 'config_text', get_string('blockstring', 'block_informations'));
         $mform->setType('config_text', PARAM_RAW);
 
-        // Images.
-        $options = array(
-            // TODO    
-        );
-        $mform->addElement('select', 'config_image', get_string('image', 'block_informations'), $options);
-        $mform->setDefault('config_image', 'unit-informations');
-
         // Licences.
         $licences = block_informations_get_licences_names();
         $mform->addElement('select', 'config_licence', get_string('licences', 'block_informations'), $licences);
         $mform->setDefault('config_licence', '');
-
-        // Author.
-        $mform->addElement('text', 'config_author', get_string('config:author', 'block_informations'));
-        $mform->setDefault('config_author', '');
-        $mform->setType('config_author', PARAM_TEXT);
     }
 }

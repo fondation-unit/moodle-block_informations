@@ -1,16 +1,18 @@
 {{{content}}}
 
+{{#image}}
 <div class="img">
     <img src="{{image}}" alt="{{#str}} imagealt, block_informations {{/str}}" title="{{#str}} imagealt, block_informations {{/str}}" />
 </div>
+{{/image}}
 
 {{#licenceurl}}
-{{#licenceimage}}
-<div class="licence-infos">
-    <h5>{{#str}} licenceofthecontent, block_informations {{/str}}</h5>
-    <a id="block_informations-cc-licence" href="{{{licenceurl}}}" data-name="{{licencename}}">
-        <img src="{{licenceimage}}" alt="{{licencename}}" title="{{#str}} licence, block_informations {{/str}} {{licencename}}" />
-    </a>
-</div>
-{{/licenceimage}}
+    {{#licenceimage}}
+    <div class="licence-infos">
+        <h5>{{#str}} licenceofthecontent, block_informations {{/str}}</h5>
+        <a id="block_informations-cc-licence" href="{{{licenceurl}}}" data-name="{{licencename}}">
+            <img src="{{licenceimage}}" alt="{{licencename}}" title="{{#str}} licence, block_informations {{/str}} {{licencename}}" />
+        </a>
+    </div>
+    {{/licenceimage}}
 {{/licenceurl}}

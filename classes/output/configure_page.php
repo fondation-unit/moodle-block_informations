@@ -38,6 +38,7 @@ use core_course_category;
 
 
 class configure_page implements renderable, templatable {
+
     /**
      * Export this data so it can be used as the context for a mustache template.
      *
@@ -47,28 +48,30 @@ class configure_page implements renderable, templatable {
     public function export_for_template(renderer_base $output) {
         global $CFG;
 
+        $licences = block_informations_get_all_licences();
+        $deleteurl = new moodle_url('/blocks/informations/deletelicence.php', array(
+            'sesskey' => sesskey(),
+            'returnto' => 'configure')
+        );
         $namehelp = new help_icon('cc_licence_name_desc', 'block_informations');
         $licencehelp = new help_icon('cc_licence_url_desc', 'block_informations');
         $imagehelp = new help_icon('cc_image_url_desc', 'block_informations');
-
-        $licences = block_informations_get_all_licences();
+        $categorieshelp = new help_icon('licence_category_desc', 'block_informations');
 
         $data = new stdClass();
         $data->wwwroot = $CFG->wwwroot;
         $data->licences = $licences;
-
-        $deleteurl = new moodle_url('/blocks/informations/deletelicence.php', array('sesskey' => sesskey(), 'returnto' => 'configure'));
         $data->deleteurl = $deleteurl->out();
-
         $data->namehelp = $namehelp;
         $data->licencehelp = $licencehelp;
         $data->imagehelp = $imagehelp;
+        $data->categorieshelp = $categorieshelp;
         $data->categories = [
-            ['id' => 0, 'name' => get_string('licence_category_empty', 'block_informations')]
+            ['id' => null, 'name' => get_string('licence_category_empty', 'block_informations')]
         ];
 
         $categories = block_informations_get_available_categories();
-        foreach($categories as $category) {
+        foreach ($categories as $category) {
             $data->categories[] = [
                 'id' => $category->id,
                 'name' => $category->name

@@ -27,12 +27,6 @@ $string['title'] = 'Informations';
 $string['blocktitle'] = 'Modifier le titre :';
 $string['blockstring'] = 'Modifier le contenu :';
 $string['defaulttitle'] = 'Informations';
-$string['defaulttext'] = '<p>Un projet de L\'Université Numérique alliée à un consortium de partenaires :<p>
-<ul>
-    <li>Pour répondre à une forte demande de supports de formations hybrides facilement réutilisables</li>
-    <li>Pour engager une démarche générale, systémique et collective visant la création et le partage de ressources pédagogiques
-     numériques à large potentiel de réutilisation, révision et adaptation à des contextes divers</li>
-</ul>';
 $string['imagealt'] = 'Image alt';
 $string['image'] = 'Image du bloc';
 $string['cc_licence_name'] = 'Nom de la licence CC';
@@ -44,13 +38,19 @@ $string['cc_image_url_desc'] = 'Ajoute une nouvelle URL vers une image de licenc
 $string['available_categories'] = 'Categories disponibles';
 $string['licence_category'] = 'Licence pour la catégorie';
 $string['licence_category_desc'] = 'Associe la licence à une catégorie de cours.';
-$string['licence_category_empty'] = 'Vide - Ne pas associer à une catégorie.';
-$string['configuration'] = 'Configuration';
+$string['licence_category_empty'] = 'Ne pas associer à une catégorie.';
+$string['licences_configuration'] = 'Configuration des licences';
 $string['configuration_settings'] = 'Réglages de configuration';
 $string['settings:default_licence'] = 'Licence par défaut';
 $string['settings:default_licence_desc'] = 'Licence par défaut employée par le bloc.';
-$string['settings:default_image'] = 'Image par défaut';
-$string['settings:default_image_desc'] = 'Image par défaut affichée dans le bloc.';
+$string['settings:image'] = 'Image';
+$string['settings:image_desc'] = 'Image affichée dans le bloc.';
+$string['settings:image_url'] = 'URL image distante';
+$string['settings:image_url_desc'] = 'URL de l\'image distante affichée dans le bloc. Remplace l\'image locale si renseigné.';
+$string['settings:image_alt'] = 'Texte alternatif de l\'image';
+$string['settings:image_alt_desc'] = 'Texte alternatif de l\'image affichée dans le bloc.';
+$string['settings:body'] = 'Texte du corps du bloc.';
+$string['settings:body_desc'] = 'Texte du corps du bloc. Peut être modifié au niveau d\'une instance du bloc en mode édition.';
 $string['licences'] = 'Licences';
 $string['licence'] = 'Licence';
 $string['licenceofthecontent'] = 'Licence du contenu';

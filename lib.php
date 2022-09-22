@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Informations block
+ * Informations block lib
  *
  * @package    block_informations
  * @copyright  2022 Fondation UNIT
@@ -42,7 +42,7 @@ function block_informations_pluginfile($course, $cm, $context, $filearea, $args,
         return false;
     }
 
-    if ($filearea !== 'default_image' ) {
+    if ($filearea !== 'image' ) {
         return false;
     }
 

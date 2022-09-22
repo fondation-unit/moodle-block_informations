@@ -28,8 +28,7 @@ use renderable;
 use renderer_base;
 use templatable;
 
-class content implements renderable, templatable
-{
+class content implements renderable, templatable {
     public $text;
     public $image;
     public $licencename;
@@ -54,10 +53,16 @@ class content implements renderable, templatable
         $this->licenceimage = $licenceimage;
     }
 
+    /**
+     * Export the data for the template.
+     *
+     * @param \renderer_base $output
+     * @return array
+     */
     public function export_for_template(renderer_base $output) {
         $data = array(
             'content' => $this->text,
-            'image' => $this->image->out(),
+            'image' => $this->image ? $this->image : null,
             'licencename' => $this->licencename,
             'licenceurl' => $this->licenceurl,
             'licenceimage' => $this->licenceimage,

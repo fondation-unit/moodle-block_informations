@@ -45,65 +45,74 @@ class block_informations extends block_base
     }
 
     public function get_content() {
-        global $PAGE, $OUTPUT;
-
         $this->content = new stdClass();
         $defaultlicence = get_config('block_informations', 'default_licence');
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
-        $text = get_string('defaulttext', 'block_informations');
-        $defaultimage = get_config('block_informations', 'default_image');
-
-        if (isset($defaultimage)) {
-            $image = moodle_url::make_pluginfile_url(
-                context_system::instance()->id,
-                'block_informations',
-                'default_image',
-                null,
-                null,
-                $defaultimage);
-        } else {
-            $image = null;
-        }
+        $body = get_config('block_informations', 'body');
 
         if (!empty($this->config->text['text'])) {
-            $text = $this->config->text['text'];
+            $body = $this->config->text['text'];
         }
+
+        // Try to get any remote image ; if not, get the stored one.
+        $image = get_config('block_informations', 'image_url');
+        if (!$image) {
+            $defaultimage = get_config('block_informations', 'image');
+            if (isset($defaultimage) && strlen($defaultimage) > 0) {
+                $image = moodle_url::make_pluginfile_url(
+                    context_system::instance()->id,
+                    'block_informations',
+                    'image',
+                    null,
+                    null,
+                    $defaultimage);
+                $image = $image->out();
+            }
+        }
+
+        $context = $this->context;
+        $coursecontext = $context->get_course_context();
+        $coursecategory = block_informations_get_course_category($coursecontext);
 
         $licence = new \stdClass();
         $licence->licencename = null;
         $licence->licenceurl = null;
         $licence->licenceimage = null;
-
-        $context = $PAGE->context;
-        $coursecontext = $context->get_course_context();
-        $coursecategory = block_informations_get_course_category($coursecontext);
+        // Get the licence of the course category if it exists.
         $licence = block_informations_category_licence($coursecategory);
 
+        $renderer = $this->page->get_renderer('block_informations');
+
         if (!$licence) {
-            // No category licence
-            $licence = block_informations_get_licence($licenceid);
+            // No category licence.
+            if (!$licence = block_informations_get_licence($licenceid)) {
+                // Render the block without a licence.
+                $content = new \block_informations\output\content($body, $image, null, null, null);
+                $this->content->text = $renderer->render($content);
+                return $this->content;
+            }
         }
-        
+
+        // Prepare the content for the renderer.
         $content = new \block_informations\output\content(
-            $text,
+            $body,
             $image,
             $licence->licencename,
             $licence->licenceurl,
             $licence->licenceimage
         );
-        $renderer = $this->page->get_renderer('block_informations');
-        $this->content->text = $renderer->render($content);
 
+        $this->content->text = $renderer->render($content);
         return $this->content;
     }
 
     public function specialization() {
         $defaulttitle = get_string('defaulttitle', 'block_informations');
-        $defaulttext = get_string('defaulttext', 'block_informations');
+        $defaultbody = get_string('settings:body', 'block_informations');
 
         if (isset($this->config)) {
             $this->title = empty($this->config->title) ? $defaulttitle : $this->config->title;
-            $this->text = empty($this->config->text) ? $defaulttext : $this->config->text;
+            $this->body = empty($this->config->text) ? $defaultbody : $this->config->text;
         }
     }
 
