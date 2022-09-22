@@ -50,6 +50,10 @@ class block_informations extends block_base
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
         $body = get_config('block_informations', 'body');
 
+        if (!empty($this->config->text['text'])) {
+            $body = $this->config->text['text'];
+        }
+
         // Try to get any remote image ; if not, get the stored one.
         $image = get_config('block_informations', 'image_url');
         if (!$image) {
@@ -108,7 +112,7 @@ class block_informations extends block_base
 
         if (isset($this->config)) {
             $this->title = empty($this->config->title) ? $defaulttitle : $this->config->title;
-            $this->body = empty($this->config->body) ? '' : $this->config->body;
+            $this->body = empty($this->config->text) ? $defaultbody : $this->config->text;
         }
     }
 
