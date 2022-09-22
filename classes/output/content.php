@@ -62,7 +62,7 @@ class content implements renderable, templatable {
     public function export_for_template(renderer_base $output) {
         $data = array(
             'content' => $this->text,
-            'image' => $this->image ? $this->image->out() : null,
+            'image' => $this->image ? $this->image : null,
             'licencename' => $this->licencename,
             'licenceurl' => $this->licenceurl,
             'licenceimage' => $this->licenceimage,

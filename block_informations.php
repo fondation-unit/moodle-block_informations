@@ -50,31 +50,35 @@ class block_informations extends block_base
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
         $text = get_string('defaulttext', 'block_informations');
 
-        // Handle the image of the block.
-        $image = null;
-        $defaultimage = get_config('block_informations', 'image');
-        if (isset($defaultimage) && strlen($defaultimage) > 0) {
-            $image = moodle_url::make_pluginfile_url(
-                context_system::instance()->id,
-                'block_informations',
-                'image',
-                null,
-                null,
-                $defaultimage);
-        }
-
         if (!empty($this->config->text['text'])) {
             $text = $this->config->text['text'];
         }
+
+        // Try to get any remote image ; if not, get the stored one.
+        $image = get_config('block_informations', 'image_url');
+        if (!$image) {
+            $defaultimage = get_config('block_informations', 'image');
+            if (isset($defaultimage) && strlen($defaultimage) > 0) {
+                $image = moodle_url::make_pluginfile_url(
+                    context_system::instance()->id,
+                    'block_informations',
+                    'image',
+                    null,
+                    null,
+                    $defaultimage);
+                $image = $image->out();
+            }
+        }
+
+        $context = $this->context;
+        $coursecontext = $context->get_course_context();
+        $coursecategory = block_informations_get_course_category($coursecontext);
 
         $licence = new \stdClass();
         $licence->licencename = null;
         $licence->licenceurl = null;
         $licence->licenceimage = null;
-
-        $context = $this->context;
-        $coursecontext = $context->get_course_context();
-        $coursecategory = block_informations_get_course_category($coursecontext);
+        // Get the licence of the course category if it exists.
         $licence = block_informations_category_licence($coursecategory);
 
         $renderer = $this->page->get_renderer('block_informations');
@@ -89,6 +93,7 @@ class block_informations extends block_base
             }
         }
 
+        // Prepare the content for the renderer.
         $content = new \block_informations\output\content(
             $text,
             $image,
