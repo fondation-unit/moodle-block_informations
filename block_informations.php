@@ -45,8 +45,6 @@ class block_informations extends block_base
     }
 
     public function get_content() {
-        global $PAGE, $OUTPUT;
-
         $this->content = new stdClass();
         $defaultlicence = get_config('block_informations', 'default_licence');
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
@@ -74,7 +72,7 @@ class block_informations extends block_base
         $licence->licenceurl = null;
         $licence->licenceimage = null;
 
-        $context = $PAGE->context;
+        $context = $this->context;
         $coursecontext = $context->get_course_context();
         $coursecategory = block_informations_get_course_category($coursecontext);
         $licence = block_informations_category_licence($coursecategory);
