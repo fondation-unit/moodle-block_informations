@@ -64,7 +64,7 @@ class configure_page implements renderable, templatable {
         $data->licencehelp = $licencehelp;
         $data->imagehelp = $imagehelp;
         $data->categories = [
-            ['id' => 0, 'name' => get_string('licence_category_empty', 'block_informations')]
+            ['id' => NULL, 'name' => get_string('licence_category_empty', 'block_informations')]
         ];
 
         $categories = block_informations_get_available_categories();
