@@ -42,7 +42,7 @@ function block_informations_pluginfile($course, $cm, $context, $filearea, $args,
         return false;
     }
 
-    if ($filearea !== 'default_image' ) {
+    if ($filearea !== 'image' ) {
         return false;
     }
 

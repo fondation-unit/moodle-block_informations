@@ -54,12 +54,12 @@ class block_informations extends block_base
 
         // Handle the image of the block.
         $image = null;
-        $defaultimage = get_config('block_informations', 'default_image');
+        $defaultimage = get_config('block_informations', 'image');
         if (isset($defaultimage) && strlen($defaultimage) > 0) {
             $image = moodle_url::make_pluginfile_url(
                 context_system::instance()->id,
                 'block_informations',
-                'default_image',
+                'image',
                 null,
                 null,
                 $defaultimage);

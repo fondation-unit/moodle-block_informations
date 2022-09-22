@@ -48,11 +48,19 @@ if ($ADMIN->fulltree) {
     );
 
     $settings->add(new admin_setting_configstoredfile(
-        'block_informations/default_image',
-        new lang_string('settings:default_image', 'block_informations'),
-        new lang_string('settings:default_image_desc', 'block_informations'),
-        'default_image',
+        'block_informations/image',
+        new lang_string('settings:image', 'block_informations'),
+        new lang_string('settings:image_desc', 'block_informations'),
+        'image',
         0,
         ['accepted_types' => ['image']])
+    );
+
+    $settings->add(new admin_setting_configtext(
+        'block_informations/imagealt',
+        new lang_string('settings:image_alt', 'block_informations'),
+        new lang_string('settings:image_alt_desc', 'block_informations'), 
+        '', 
+        PARAM_TEXT)
     );
 }
