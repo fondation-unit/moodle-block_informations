@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Informations block
+ * Informations block lib
  *
  * @package    block_informations
  * @copyright  2022 Fondation UNIT
