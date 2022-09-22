@@ -103,6 +103,12 @@ function block_informations_get_available_categories() {
     return $availablecategories;
 }
 
+/**
+ * Retrieve a licence for the given category id.
+ *
+ * @param  int $categoryid
+ * @return object|null $licence A record of block_informations_licences or null.
+ */
 function block_informations_category_licence($categoryid) {
     global $DB;
 
