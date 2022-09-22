@@ -36,7 +36,6 @@ function block_informations_add_licence($licence) {
 
     if ($licence->licencename && $licence->licenceurl && $licence->licenceimage) {
         $id = $DB->insert_record('block_informations_licences', $licence);
-
         if ($id) {
             $url = new moodle_url('/blocks/informations/configure.php');
             redirect($url);
@@ -108,8 +107,7 @@ function block_informations_get_licences_names() {
 function block_informations_get_licence($id) {
     global $DB;
 
-    $licence = $DB->get_record('block_informations_licences', array('id' => $id));
-    return $licence;
+    return $DB->get_record('block_informations_licences', array('id' => $id));
 }
 
 /**
