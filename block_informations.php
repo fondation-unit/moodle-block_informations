@@ -88,7 +88,7 @@ class block_informations extends block_base
                 return $this->content;
             }
         }
-        
+
         $content = new \block_informations\output\content(
             $text,
             $image,
