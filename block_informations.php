@@ -53,7 +53,7 @@ class block_informations extends block_base
         $text = get_string('defaulttext', 'block_informations');
         $defaultimage = get_config('block_informations', 'default_image');
 
-        if (isset($defaultimage)) {
+        if (isset($defaultimage) && strlen($defaultimage) > 0) {
             $image = moodle_url::make_pluginfile_url(
                 context_system::instance()->id,
                 'block_informations',
@@ -79,9 +79,16 @@ class block_informations extends block_base
         $coursecategory = block_informations_get_course_category($coursecontext);
         $licence = block_informations_category_licence($coursecategory);
 
+        $renderer = $this->page->get_renderer('block_informations');
+
         if (!$licence) {
-            // No category licence
-            $licence = block_informations_get_licence($licenceid);
+            // No category licence.
+            if (!$licence = block_informations_get_licence($licenceid)) {
+                // Render the block without a licence.
+                $content = new \block_informations\output\content($text, $image, null, null, null);
+                $this->content->text = $renderer->render($content);
+                return $this->content;
+            }
         }
         
         $content = new \block_informations\output\content(
@@ -91,9 +98,8 @@ class block_informations extends block_base
             $licence->licenceurl,
             $licence->licenceimage
         );
-        $renderer = $this->page->get_renderer('block_informations');
-        $this->content->text = $renderer->render($content);
 
+        $this->content->text = $renderer->render($content);
         return $this->content;
     }
 
