@@ -51,8 +51,10 @@ class block_informations extends block_base
         $defaultlicence = get_config('block_informations', 'default_licence');
         $licenceid = $this->config && isset($this->config->licence) ? $this->config->licence : $defaultlicence;
         $text = get_string('defaulttext', 'block_informations');
-        $defaultimage = get_config('block_informations', 'default_image');
 
+        // Handle the image of the block.
+        $image = null;
+        $defaultimage = get_config('block_informations', 'default_image');
         if (isset($defaultimage) && strlen($defaultimage) > 0) {
             $image = moodle_url::make_pluginfile_url(
                 context_system::instance()->id,
@@ -61,8 +63,6 @@ class block_informations extends block_base
                 null,
                 null,
                 $defaultimage);
-        } else {
-            $image = null;
         }
 
         if (!empty($this->config->text['text'])) {
