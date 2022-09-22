@@ -107,6 +107,16 @@ function block_informations_category_licence($categoryid) {
     global $DB;
 
     $licence = $DB->get_record_sql('SELECT * FROM {block_informations_licences} WHERE categoryid = :categoryid', array('categoryid' => $categoryid));
+
+    if (!$licence) {
+        $category = $DB->get_record_sql('SELECT * FROM {course_categories} WHERE id = :categoryid', array('categoryid' => $categoryid));
+        $children = $DB->get_records('course_categories', array('parent' => $categoryid), 'sortorder ASC');
+        if ($category->parent) {
+            // Search a licence for the parent category.
+            return block_informations_category_licence($category->parent);
+        }
+    }
+
     return $licence;
 }
 
