@@ -119,8 +119,9 @@ function block_informations_get_available_categories() {
     global $DB;
 
     $categories = core_course_category::make_categories_list();
-    $usedcategoriesids = $DB->get_records_sql('SELECT DISTINCT(categoryid) as id FROM {block_informations_licences} WHERE categoryid IS NOT NULL');
-    
+    $sql = 'SELECT DISTINCT(categoryid) as id FROM {block_informations_licences} WHERE categoryid IS NOT NULL';
+    $usedcategoriesids = $DB->get_records_sql($sql);
+
     foreach ($usedcategoriesids as $key => $val) {
         unset($categories[$key]);
     }
@@ -142,10 +143,11 @@ function block_informations_get_available_categories() {
 function block_informations_category_licence($categoryid) {
     global $DB;
 
-    $licence = $DB->get_record_sql('SELECT * FROM {block_informations_licences} WHERE categoryid = :categoryid', array('categoryid' => $categoryid));
+    $sql = 'SELECT * FROM {block_informations_licences} WHERE categoryid = :categoryid';
+    $licence = $DB->get_record_sql($sql, array('categoryid' => $categoryid));
 
     if (!$licence) {
-        $category = $DB->get_record_sql('SELECT * FROM {course_categories} WHERE id = :categoryid', array('categoryid' => $categoryid));
+        $category = $DB->get_record_sql('SELECT * FROM {course_categories} WHERE id = :id', array('id' => $categoryid));
         $children = $DB->get_records('course_categories', array('parent' => $categoryid), 'sortorder ASC');
         if ($category->parent) {
             // Search a licence for the parent category.
