@@ -49,7 +49,7 @@ class configure_page implements renderable, templatable {
         global $CFG;
 
         $licences = block_informations_get_all_licences();
-        $deleteurl = new moodle_url('/blocks/informations/deletelicence.php', array(
+        $deleteurl = new moodle_url('/blocks/informations/delete_licence.php', array(
             'sesskey' => sesskey(),
             'returnto' => 'configure')
         );
