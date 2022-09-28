@@ -36,8 +36,12 @@ if ($ADMIN->fulltree) {
     </div>
     EOD;
 
-    $settings->add(new admin_setting_heading('block_informations', new lang_string('configuration_settings', 'block_informations') .
-        null, $template));
+    // Add the licence configuration settings page.
+    $settings->add(
+        new admin_setting_heading('block_informations',
+        new lang_string('configuration_settings', 'block_informations'), 
+        $template)
+    );
 
     $settings->add(new admin_setting_configselect(
         'block_informations/default_licence',
