@@ -65,7 +65,7 @@ if ($ADMIN->fulltree) {
     );
 
     $settings->add(new admin_setting_configtext(
-        'block_informations/imagealt',
+        'block_informations/image_alt',
         new lang_string('settings:image_alt', 'block_informations'),
         new lang_string('settings:image_alt_desc', 'block_informations'),
         '',

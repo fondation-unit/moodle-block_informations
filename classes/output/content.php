@@ -66,6 +66,7 @@ class content implements renderable, templatable {
             'licencename' => $this->licencename,
             'licenceurl' => $this->licenceurl,
             'licenceimage' => $this->licenceimage,
+            'imagealt' => get_config('block_informations', 'image_alt')
         );
         return $data;
     }
