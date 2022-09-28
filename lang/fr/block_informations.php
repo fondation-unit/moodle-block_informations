@@ -27,7 +27,6 @@ $string['title'] = 'Informations';
 $string['blocktitle'] = 'Modifier le titre :';
 $string['blockstring'] = 'Modifier le contenu :';
 $string['defaulttitle'] = 'Informations';
-$string['imagealt'] = 'Image alt';
 $string['image'] = 'Image du bloc';
 $string['cc_licence_name'] = 'Nom de la licence CC';
 $string['cc_licence_name_desc'] = 'Nom destiné à l\'affichage de la licence CC.';
