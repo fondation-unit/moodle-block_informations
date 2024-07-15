@@ -18,14 +18,14 @@
  * Informations block version file
  *
  * @package    block_informations
- * @copyright  2022 Fondation UNIT
+ * @copyright  2024 Fondation UNIT
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2022092800;
+$plugin->version = 2024071500;
 $plugin->requires = 2016052300;
-$plugin->release = '1.0.0';
+$plugin->release = '1.0.1';
 $plugin->component = 'block_informations';
 $plugin->maturity = MATURITY_STABLE;
