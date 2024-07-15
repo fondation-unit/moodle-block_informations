@@ -18,7 +18,7 @@
  * Informations block
  *
  * @package    block_informations
- * @copyright  2022 Fondation UNIT
+ * @copyright  2024 Fondation UNIT
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -108,11 +108,11 @@ class block_informations extends block_base
 
     public function specialization() {
         $defaulttitle = get_string('defaulttitle', 'block_informations');
-        $defaultbody = get_string('settings:body', 'block_informations');
+        $defaultcontent = get_string('settings:body', 'block_informations');
 
         if (isset($this->config)) {
             $this->title = empty($this->config->title) ? $defaulttitle : $this->config->title;
-            $this->body = empty($this->config->text) ? $defaultbody : $this->config->text;
+            $this->content = empty($this->config->text) ? $defaultcontent : $this->config->text;
         }
     }
 

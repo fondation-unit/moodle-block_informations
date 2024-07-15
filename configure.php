@@ -18,7 +18,7 @@
  * Informations block settings
  *
  * @package    block_informations
- * @copyright  2022 Fondation UNIT
+ * @copyright  2024 Fondation UNIT
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
